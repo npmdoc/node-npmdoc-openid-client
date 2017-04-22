@@ -1,0 +1,652 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/panva/node-openid-client"
+
+    >openid-client (v1.8.1)</a>
+</h1>
+<h4>OpenID Connect Relying Party (RP, Client) implementation for Node.js servers, supports passportjs</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.openid-client">module openid-client</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.Issuer">
+            function <span class="apidocSignatureSpan">openid-client.</span>Issuer
+            <span class="apidocSignatureSpan">(metadata)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.Strategy">
+            function <span class="apidocSignatureSpan">openid-client.</span>Strategy
+            <span class="apidocSignatureSpan">(options, verify)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.TokenSet">
+            function <span class="apidocSignatureSpan">openid-client.</span>TokenSet
+            <span class="apidocSignatureSpan">(values)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.open_id_connect_error">
+            function <span class="apidocSignatureSpan">openid-client.</span>open_id_connect_error
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">openid-client.</span>Registry</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">openid-client.</span>Strategy.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.openid-client.Strategy">module openid-client.Strategy</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.Strategy.Strategy">
+            function <span class="apidocSignatureSpan">openid-client.</span>Strategy
+            <span class="apidocSignatureSpan">(options, verify)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.openid-client.Strategy.prototype">module openid-client.Strategy.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.Strategy.prototype.authenticate">
+            function <span class="apidocSignatureSpan">openid-client.Strategy.prototype.</span>authenticate
+            <span class="apidocSignatureSpan">(req, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.openid-client.open_id_connect_error">module openid-client.open_id_connect_error</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.open_id_connect_error.open_id_connect_error">
+            function <span class="apidocSignatureSpan">openid-client.</span>open_id_connect_error
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.openid-client.open_id_connect_error.super_">
+            function <span class="apidocSignatureSpan">openid-client.open_id_connect_error.</span>super_
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.openid-client" id="apidoc.module.openid-client">module openid-client</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.Issuer" id="apidoc.element.openid-client.Issuer">
+        function <span class="apidocSignatureSpan">openid-client.</span>Issuer
+        <span class="apidocSignatureSpan">(metadata)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class Issuer {
+<span class="apidocCodeCommentSpan">  /**
+   * @name constructor
+   * @api public
+   */
+</span>  constructor(metadata) {
+    const properties = Object.assign({}, ISSUER_DEFAULTS, metadata);
+
+    if (!properties.introspection_endpoint &#x26;&#x26; properties.token_introspection_endpoint) {
+      properties.introspection_endpoint = properties.token_introspection_endpoint;
+    }
+
+    if (!properties.revocation_endpoint &#x26;&#x26; properties.token_revocation_endpoint) {
+      properties.revocation_endpoint = properties.token_revocation_endpoint;
+    }
+
+    _.forEach(properties, (value, key) =&#x3e; {
+      instance(this).metadata[key] = value;
+      if (!this[key]) {
+        Object.defineProperty(this, key, {
+          get() { return instance(this).metadata[key]; },
+        });
+      }
+    });
+
+    instance(this).cache = new LRU({ max: 100 });
+
+    registry.set(this.issuer, this);
+
+    const self = this;
+
+    Object.defineProperty(this, &#x27;Client&#x27;, {
+      value: class Client extends BaseClient {
+        static get issuer() {
+          return self;
+        }
+
+        get issuer() {
+          return this.constructor.issuer;
+        }
+      },
+    });
+  }
+
+  /**
+   * @name inspect
+   * @api public
+   */
+  inspect() {
+    return util.format(&#x27;Issuer &#x3c;%s&#x3e;&#x27;, this.issuer);
+  }
+
+  /**
+   * @name keystore
+   * @api private
+   */
+  keystore(reload) {
+    if (!this.jwks_uri) return Promise.reject(new Error(&#x27;jwks_uri must be configured&#x27;));
+
+    const keystore = instance(this).keystore;
+    const lookupCache = instance(this).cache;
+
+    if (reload || !keystore) {
+      lookupCache.reset();
+      return got(this.jwks_uri, this.httpOptions())
+        .then(expectResponse(200))
+        .then(response =&#x3e; JSON.parse(response.body))
+        .then(jwks =&#x3e; jose.JWK.asKeyStore(jwks))
+        .then((joseKeyStore) =&#x3e; {
+          lookupCache.set(&#x27;throttle&#x27;, true, 60 * 1000);
+          instance(this).keystore = joseKeyStore;
+          return joseKeyStore;
+        })
+        .catch(errorHandler);
+    }
+
+    return Promise.resolve(keystore);
+  }
+
+  /**
+   * @name key
+   * @api private
+   */
+  key(def, allowMulti) {
+    const lookupCache = instance(this).cache;
+
+    // refresh keystore on every unknown key but also only upto once every minute
+    const freshJwksUri = lookupCache.get(def) || lookupCache.get(&#x27;throttle&#x27;);
+
+    return this.keystore(!freshJwksUri)
+      .then(store =&#x3e; store.all(def))
+      .then((keys) =&#x3e; {
+        assert(keys.length, &#x27;no valid key found&#x27;);
+        if (!allowMulti) {
+          assert.equal(keys.length, 1, &#x27;multiple matching keys, kid must be provided&#x27;);
+          lookupCache.set(def, true);
+        }
+        return keys[0];
+      });
+  }
+
+  /**
+   * @name metadata
+   * @api public
+   */
+  get metadata() {
+    return instance(this).metadata;
+  }
+
+  /**
+   * @name webfinger
+   * @api public
+   */
+  static webfinger(input) {
+    const resource = webfingerNormalize(input);
+    const host = url.parse(resource).host;
+    const query = { resource, rel: REL };
+    const opts = { query, followRedirect: true };
+    const webfingerUrl = `https://${host}${WEBFINGER}`;
+
+    return got(webfingerUrl, this.httpOptions(opts))
+      .then(expectResponse(200))
+      .then(response =&#x3e; JSON.parse(response.body))
+      .then((body) =&#x3e; {
+        const location = _.find(body.links, link =&#x3e; typeof link === &#x27;object&#x27; &#x26;&#x26; link.rel === REL &#x26;&#x26; link.href);
+        assert(location, &#x27;no issuer found in webfinger&#x27;);
+        assert(typeof location.href === &#x27;string&#x27; &#x26;&#x26; location.href.startsWith(&#x27;https://&#x27;), &#x27;invalid issuer location&#x27;);
+        const expectedIssuer = location.href;
+        if (registry.has(expectedIssuer)) return registry.get(expectedIssuer);
+
+        return this.discover(expectedIssuer).then((issuer) =&#x3e; {
+          try {
+            assert.equal(issuer.issuer, expectedIssuer, &#x27;discovered issuer mismatch&#x27;);
+          } catch (err) {
+            registry.delete(issuer.issuer);
+            throw err;
+          }
+          return issuer;
+        });
+      });
+  }
+
+  /**
+   * @name discover
+   * @api public
+   */
+  static discover(uri) {
+    uri = stripTrailingSlash(uri); // eslint-disable-line no-param ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.Strategy" id="apidoc.element.openid-client.Strategy">
+        function <span class="apidocSignatureSpan">openid-client.</span>Strategy
+        <span class="apidocSignatureSpan">(options, verify)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function OpenIDConnectStrategy(options, verify) {
+  const opts = (() =&#x3e; {
+    if (options instanceof Client) return { client: options };
+    return options;
+  })();
+
+  const client = opts.client;
+
+  assert.equal(client instanceof Client, true);
+  assert.equal(typeof verify, &#x27;function&#x27;);
+
+  assert(client.issuer &#x26;&#x26; client.issuer.issuer, &#x27;client must have an issuer with an identifier&#x27;);
+
+  this._client = client;
+  this._issuer = client.issuer;
+  this._verify = verify;
+  this._params = opts.params || {};
+  const params = this._params;
+
+  this.name = url.parse(client.issuer.issuer).hostname;
+
+  if (!params.response_type) params.response_type = _.get(client, &#x27;response_types[0]&#x27;, &#x27;code&#x27;);
+  if (!params.redirect_uri) params.redirect_uri = _.get(client, &#x27;redirect_uris[0]&#x27;);
+  if (!params.scope) params.scope = &#x27;openid&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.TokenSet" id="apidoc.element.openid-client.TokenSet">
+        function <span class="apidocSignatureSpan">openid-client.</span>TokenSet
+        <span class="apidocSignatureSpan">(values)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">class TokenSet {
+<span class="apidocCodeCommentSpan">  /**
+   * @name constructor
+   * @api public
+   */
+</span>  constructor(values) {
+    Object.assign(this, values);
+  }
+
+  /**
+   * @name expires_in=
+   * @api public
+   */
+  set expires_in(value) { // eslint-disable-line camelcase
+    this.expires_at = now() + Number(value);
+  }
+
+  /**
+   * @name expires_in
+   * @api public
+   */
+  get expires_in() { // eslint-disable-line camelcase
+    return Math.max.apply(null, [this.expires_at - now(), 0]);
+  }
+
+  /**
+   * @name expired
+   * @api public
+   */
+  expired() {
+    return this.expires_in === 0;
+  }
+
+  /**
+   * @name claims
+   * @api public
+   */
+  get claims() {
+    if (decodedClaims.has(this)) return decodedClaims.get(this);
+    if (!this.id_token) throw new Error(&#x27;id_token not present in TokenSet&#x27;);
+
+    const decoded = JSON.parse(base64url.decode(this.id_token.split(&#x27;.&#x27;)[1]));
+    decodedClaims.set(this, decoded);
+    return decoded;
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.open_id_connect_error" id="apidoc.element.openid-client.open_id_connect_error">
+        function <span class="apidocSignatureSpan">openid-client.</span>open_id_connect_error
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">open_id_connect_error = function () {
+		Object.defineProperty(this, &#x27;name&#x27;, {
+			configurable: true,
+			value: className,
+			writable: true
+		});
+
+		captureStackTrace(this, this.constructor);
+
+		setup.apply(this, arguments);
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.openid-client.Strategy" id="apidoc.module.openid-client.Strategy">module openid-client.Strategy</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.Strategy.Strategy" id="apidoc.element.openid-client.Strategy.Strategy">
+        function <span class="apidocSignatureSpan">openid-client.</span>Strategy
+        <span class="apidocSignatureSpan">(options, verify)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function OpenIDConnectStrategy(options, verify) {
+  const opts = (() =&#x3e; {
+    if (options instanceof Client) return { client: options };
+    return options;
+  })();
+
+  const client = opts.client;
+
+  assert.equal(client instanceof Client, true);
+  assert.equal(typeof verify, &#x27;function&#x27;);
+
+  assert(client.issuer &#x26;&#x26; client.issuer.issuer, &#x27;client must have an issuer with an identifier&#x27;);
+
+  this._client = client;
+  this._issuer = client.issuer;
+  this._verify = verify;
+  this._params = opts.params || {};
+  const params = this._params;
+
+  this.name = url.parse(client.issuer.issuer).hostname;
+
+  if (!params.response_type) params.response_type = _.get(client, &#x27;response_types[0]&#x27;, &#x27;code&#x27;);
+  if (!params.redirect_uri) params.redirect_uri = _.get(client, &#x27;redirect_uris[0]&#x27;);
+  if (!params.scope) params.scope = &#x27;openid&#x27;;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.openid-client.Strategy.prototype" id="apidoc.module.openid-client.Strategy.prototype">module openid-client.Strategy.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.Strategy.prototype.authenticate" id="apidoc.element.openid-client.Strategy.prototype.authenticate">
+        function <span class="apidocSignatureSpan">openid-client.Strategy.prototype.</span>authenticate
+        <span class="apidocSignatureSpan">(req, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function authenticate(req, options) {
+  const client = this._client;
+  const issuer = this._issuer;
+  try {
+    if (!req.session) throw new Error(&#x27;authentication requires session support when using state, max_age or nonce&#x27;);
+    const reqParams = client.callbackParams(req);
+    const sessionKey = `oidc:${url.parse(issuer.issuer).hostname}`;
+
+<span class="apidocCodeCommentSpan">    /* start authentication request */
+</span>    if (_.isEmpty(reqParams)) {
+      // provide options objecti with extra authentication parameters
+      const opts = _.defaults({}, options, this._params, {
+        state: uuid(),
+      });
+
+      if (!opts.nonce &#x26;&#x26; opts.response_type.includes(&#x27;id_token&#x27;)) {
+        opts.nonce = uuid();
+      }
+
+      req.session[sessionKey] = _.pick(opts, &#x27;nonce&#x27;, &#x27;state&#x27;, &#x27;max_age&#x27;);
+      this.redirect(client.authorizationUrl(opts));
+      return;
+    }
+    /* end authentication request */
+
+    /* start authentication response */
+    const session = req.session[sessionKey];
+    const state = _.get(session, &#x27;state&#x27;);
+    const maxAge = _.get(session, &#x27;max_age&#x27;);
+    const nonce = _.get(session, &#x27;nonce&#x27;);
+
+    if (req.session) delete req.session[sessionKey];
+
+    const opts = _.defaults({}, options, {
+      redirect_uri: this._params.redirect_uri,
+    });
+
+    const checks = { state, nonce, max_age: maxAge };
+    let callback = client.authorizationCallback(opts.redirect_uri, reqParams, checks)
+      .then((tokenset) =&#x3e; {
+        const result = { tokenset };
+        return result;
+      });
+
+    const loadUserinfo = this._verify.length &#x3e; 2 &#x26;&#x26; client.issuer.userinfo_endpoint;
+
+    if (loadUserinfo) {
+      callback = callback.then((result) =&#x3e; {
+        if (result.tokenset.access_token) {
+          const userinfoRequest = client.userinfo(result.tokenset);
+          return userinfoRequest.then((userinfo) =&#x3e; {
+            result.userinfo = userinfo;
+            return result;
+          });
+        }
+
+        return result;
+      });
+    }
+
+    callback.then((result) =&#x3e; {
+      if (loadUserinfo) {
+        this._verify(result.tokenset, result.userinfo, verified.bind(this));
+      } else {
+        this._verify(result.tokenset, verified.bind(this));
+      }
+    }).catch((error) =&#x3e; {
+      if (error instanceof OpenIdConnectError &#x26;&#x26;
+            error.error !== &#x27;server_error&#x27; &#x26;&#x26;
+            !error.error.startsWith(&#x27;invalid&#x27;)) {
+        this.fail(error);
+      } else {
+        this.error(error);
+      }
+    });
+    /* end authentication response */
+  } catch (err) {
+    this.error(err);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (err) return done(err);
+    return done(null, user);
+  });
+}));
+
+// start authentication request
+// options [optional], extra authentication parameters
+app.get(&#x27;/auth&#x27;, passport.<span class="apidocCodeKeywordSpan">authenticate</span>(&#x27;oidc&#x27;, [options]));
+
+// authentication callback
+app.get(&#x27;/auth/cb&#x27;, passport.authenticate(&#x27;oidc&#x27;, { successRedirect: &#x27;/&#x27;, failureRedirect: &#x27;/
+login&#x27; }));
+```
+
+## Configuration
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.openid-client.open_id_connect_error" id="apidoc.module.openid-client.open_id_connect_error">module openid-client.open_id_connect_error</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.open_id_connect_error.open_id_connect_error" id="apidoc.element.openid-client.open_id_connect_error.open_id_connect_error">
+        function <span class="apidocSignatureSpan">openid-client.</span>open_id_connect_error
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">open_id_connect_error = function () {
+		Object.defineProperty(this, &#x27;name&#x27;, {
+			configurable: true,
+			value: className,
+			writable: true
+		});
+
+		captureStackTrace(this, this.constructor);
+
+		setup.apply(this, arguments);
+	}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.openid-client.open_id_connect_error.super_" id="apidoc.element.openid-client.open_id_connect_error.super_">
+        function <span class="apidocSignatureSpan">openid-client.open_id_connect_error.</span>super_
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function Error() { [native code] }</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
